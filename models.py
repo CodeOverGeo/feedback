@@ -11,11 +11,12 @@ def connect_db(app):
 
 
 class User(db.Model):
+    """User Model"""
 
     __tablename__ = "users"
 
     username = db.Column(db.String(20), nullable=False,
-                         unique=True, primary_key=True,)
+                         unique=True, primary_key=True)
     password = db.Column(db.String(), nullable=False)
     first_name = db.Column(db.String(30), nullable=False)
     last_name = db.Column(db.String(30), nullable=False)
@@ -59,11 +60,15 @@ class User(db.Model):
 
 
 class Feedback(db.Model):
+    """Feedback Model"""
 
     __tablename__ = 'feedback'
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
-    content = db.Column(db.Text)
-    username = db.Column(db.String(20), db.ForeignKey(
-        'users.username'), nullable=False,)
+    content = db.Column(db.Text, nullable=False)
+    username = db.Column(
+        db.String(20),
+        db.ForeignKey('users.username'),
+        nullable=False
+    )

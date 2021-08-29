@@ -11,4 +11,41 @@
   <div>{{user.email}}</div>
 </div>
 
+<div>
+  <h2>Feedback</h2>
+  <div>
+    <a href="/users/{{ user.username }}/feedback/new" class="btn btn-primary">
+      New Feedback
+    </a>
+  </div>
+  <div>
+    <ul>
+      {% for feedback in user.feedback %}
+      <li>{{ feedback.title }} {{ feedback.content }}</li>
+      <form>
+        {{form.hidden_tag()}}
+        <button
+          class="btn btn-primary"
+          formmethod="GET"
+          formaction="/feedback/{{ feedback.id }}/edit"
+        >
+          Edit
+        </button>
+        <button
+          class="btn btn-danger"
+          formmethod="POST"
+          formaction="/feedback/{{ feedback.id }}/delete"
+        >
+          Delete
+        </button>
+      </form>
+      {% endfor %}
+    </ul>
+  </div>
+  <div>
+    <form>
+      <button class="btn btn-danger" formaction="/users/{{ user.username }}/delete" formmethod="POST">DELETE {{user.username}}!</form>
+  </div>
+</div>
+
 {% endblock %}

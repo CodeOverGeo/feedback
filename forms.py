@@ -33,7 +33,7 @@ class LoginForm(FlaskForm):
 
     username = StringField(
         "Username",
-        validators=[InputRequired(), Length(min=5, max=20)],
+        validators=[InputRequired(), Length(min=5, max=20)]
     )
     password = PasswordField(
         "Password",
@@ -43,3 +43,16 @@ class LoginForm(FlaskForm):
 
 class DeleteForm(FlaskForm):
     pass
+
+
+class FeedbackForm(FlaskForm):
+    """Feedback form"""
+
+    title = StringField(
+        'Title',
+        validators=[InputRequired(), Length(max=100)]
+    )
+    content = StringField(
+        'Content',
+        validators=[InputRequired()]
+    )
